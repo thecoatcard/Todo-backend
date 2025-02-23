@@ -26,8 +26,11 @@ mongoose.set("strictQuery", true);
 // Middlewares
 app.use(morgan("combined")); // Log requests
 app.use(express.json());
+
+// CORS configuration
+const allowedOrigins = [process.env.FRONTEND_URL, "http://localhost:3001"]; // Allow localhost for development
 app.use(cors({
-    origin: process.env.FRONTEND_URL, // Use FRONTEND_URL from .env
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // Enable credentials if needed
 }));
